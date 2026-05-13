@@ -8,6 +8,7 @@ using namespace std;
 const int MAX_AMOUNT_CHOICE = 5;
 
 int main() {
+    // Load records from file into BST
     ifstream fileInput("codes.txt");
     if (!fileInput) { // check if file opens
         cerr << "File not found\n";
@@ -16,6 +17,7 @@ int main() {
     IntBinaryTree tree;
     string code;
 
+    // Populates BST with record from file
     while (fileInput >> code)
         tree.insertNode(code);
 
@@ -33,23 +35,45 @@ int main() {
 
         switch (choice)
         {
+            // Add new record into tree
             case 1:
                 cout << "Enter code to add: ";
                 cin >> code;
                 tree.insertNode(code);
-                cout << "Record added.\n";
+                cout << "Record added\n";
                 break;
+
+            // Remove record from tree
             case 2:
+                cout << "Enter code to delete: ";
+                cin >> code;
+                tree.remove(code);
+                cout << "Record deleted\n";
                 break;
+
+            // Check wheter record exists
             case 3:
+                cout << "Enter code to search: ";
+                cin >> code;
+
+                if (tree.searchNode(code))
+                    cout << "Record found\n";
+                else
+                    cout << "Record not found\n";
                 break;
+
+            // Print  sorted record
             case 4:
                 cout << "\nRecords:\n";
                 tree.displayInOrder();
                 break;
+
+            // End menu loop
             case 5:
                 cout << "Exiting...\n";
                 break;
+
+            // If different output, invalid
             default:
                 cout << "Invalid choice. Try again\n";
         }
