@@ -30,7 +30,30 @@ int main() {
              << "5. Exit\n"
              << "Enter choice: ";
         cin >> choice;
-    } while (choice <= MAX_AMOUNT_CHOICE && choice > 0);
+
+        switch (choice)
+        {
+            case 1:
+                cout << "Enter code to add: ";
+                cin >> code;
+                tree.insertNode(code);
+                cout << "Record added.\n";
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                cout << "\nRecords:\n";
+                tree.displayInOrder();
+                break;
+            case 5:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice. Try again\n";
+        }
+    } while (choice != MAX_AMOUNT_CHOICE);
 
     return 0;
 }
